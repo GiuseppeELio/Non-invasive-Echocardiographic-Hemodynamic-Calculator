@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Choose Version</title>
+    <title>Non-invasive Echocardiographic Hemodynamic Calculator</title>
 </head>
 <style>
 body {
@@ -40,6 +40,14 @@ img.center {
     text-align: center; /* Center align heading */
     font-family: Calibri, sans-serif; /* Specify Calibri as the preferred font */
 }
+/* Box styling for privacy statements */
+    .privacy-box {
+        border: 2px solid #ccc; /* Grey border */
+        padding: 20px; /* Padding inside the box */
+        margin-top: 200px; /* Adjust the margin-top value as needed */
+        border-radius: 25px; /* Rounded corners */
+    }
+
 
 /* Media query for mobile devices */
         @media screen and (max-width: 768px) {
@@ -58,6 +66,16 @@ img.center {
         <button class="styled-button" onclick="redirectToDesktop()">Desktop Version</button>
         <button class="styled-button" onclick="redirectToMobile()">Mobile Version</button>
     </div>    
+    
+     <!-- Privacy Statements enclosed in a box -->
+    <div class="privacy-box">
+        <div class="privacy-statements">
+            <p>Your privacy is important to us. We do not track your activity or gather any personal information without your consent.</p>
+            <p>We strive to maintain a secure and transparent browsing experience for all users.</p>
+            <p>Rest assured that your online privacy is respected and protected while visiting our website.</p>
+        </div>
+    </div>
+    
     <script>
         function redirectToDesktop() {
             window.location.href = 'desktop.html'; // Replace 'desktop.html' with the URL of your desktop version page
