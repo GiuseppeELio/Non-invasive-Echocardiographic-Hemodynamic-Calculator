@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Version</title>
+</head>
+<style>
+img.center {
+        display: block;
+        margin: 0 auto; /* This centers the image horizontally */
+    }
+.styled-button {
+    background-color: #093c71ff; /* Reddish background color */
+    color: #fff; /* White text color */
+    padding: 5px 10px; /* Padding */
+    border-radius: 16px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.5s ease; /* Transition for hover effect */
+    display: inline-block; /* Make button inline block */
+    margin: 0 10px; /* Add margin to space buttons */
+    border: 2px solid #e40a2cff; /* Border size and color */
+}
+
+/* Hover effect */
+.styled-button:hover {
+    background-color: #e40a2cff; /* Darker blue on hover */
+}
+
+.button-container {
+    text-align: center; /* Center align buttons */
+}
+
+.title {
+    color: #093c71ff; /* Reddish color */
+    text-align: center; /* Center align heading */
+}
+
+</style>
+<body>
+	<p><strong><img src="image.png" alt="" class="center" /></strong></p>
+    <h1 class="title">Choose Version</h1>
+    <div class="button-container">
+        <button class="styled-button" onclick="redirectToDesktop()">Desktop Version</button>
+        <button class="styled-button" onclick="redirectToMobile()">Mobile Version</button>
+    </div>    
+    <script>
+        function redirectToDesktop() {
+            window.location.href = 'desktop.html'; // Replace 'desktop.html' with the URL of your desktop version page
+        }
+
+        function redirectToMobile() {
+            window.location.href = 'mobile.html'; // Replace 'mobile.html' with the URL of your mobile version page
+        }
+    </script>
+</body>
+
+</html>
