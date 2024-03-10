@@ -7,6 +7,9 @@
     <title>Choose Version</title>
 </head>
 <style>
+body {
+        font-family: Calibri, sans-serif; /* Specify Calibri as the preferred font */
+        }
 img.center {
         display: block;
         margin: 0 auto; /* This centers the image horizontally */
@@ -36,12 +39,22 @@ img.center {
 .title {
     color: #093c71ff; /* Reddish color */
     text-align: center; /* Center align heading */
+    font-family: Calibri, sans-serif; /* Specify Calibri as the preferred font */
 }
+
+/* Media query for mobile devices */
+        @media screen and (max-width: 768px) {
+        .output-column {
+        flex: 0 0 100%; /* Display columns in full width on smaller screens */
+    }
+}
+
 
 </style>
 <body>
 	<p><strong><img src="image.png" alt="" class="center" /></strong></p>
-    <h1 class="title">Choose Version</h1>
+	<h2 style="font-weight: 400; text-align: center;"><strong>Non-invasive Echocardiographic Hemodynamic Calculator</strong></h2>
+    <h2 class="title">Choose Version</h2>
     <div class="button-container">
         <button class="styled-button" onclick="redirectToDesktop()">Desktop Version</button>
         <button class="styled-button" onclick="redirectToMobile()">Mobile Version</button>
