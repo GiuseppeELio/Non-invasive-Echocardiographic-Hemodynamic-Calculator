@@ -1,8 +1,8 @@
-<!-- ####### HEY, I AM THE SOURCE EDITOR! #########-->
 <!DOCTYPE html>
 <html>
-<style>
-body {
+<head>
+    <style>
+        body {
         font-family: Calibri, sans-serif; /* Specify Calibri as the preferred font */
         }
     img.center {
@@ -12,132 +12,88 @@ body {
     .parameter-column {
     background-color: #f9f9f9; /* Light gray background color */
 }
-.section-label {
-    text-align: center;
-    background-color: #e40a2cff;
-    color: white; /* Text color */
-    padding: 5px 10px; /* Adjust padding as needed */
-    border-radius: 15px; /* Rounded corners */
-    margin: 0 auto; /* Center the label horizontally */
-    width: fit-content; /* Make the label width fit its content */
-    border: 2px solid #093c71ff; /* Border size and color */
-}
-    .variables, .equations, .references, .Abbreviations{
-        padding: 10px; /* Padding for content */
-        border-radius: 10px; /* Rounded corners */
-        background-color: #f9f9f9; /* Light background color */
-        margin-bottom: 10px; /* Spacing */
-    }
-   #content-container {
-    background: linear-gradient(to right, #f9f9f9, #f9f9f9);
-    padding: 10px; /* Padding around the container */
-    border-radius: 20px; /* Rounded corners for the container */
-    line-height: 1.5; /* Adjust line height */
-    display: flex;
-    flex-direction: row;
-    width: 100%; /* Set content container to full width */
-}
-
-#input-column,
-#output-column {
-    flex: 1;
-    width: 50%; /* Each column takes 50% of the width */
-}
-
-.output-container,
-.reference-container {
-    height: 100%; /* Make both containers take full height of their parent */
-    display: flex; /* Use flexbox for inner alignment */
-    flex-direction: column; /* Arrange items vertically */
-}
-
-.output-parameter {
-    margin-bottom: 5px; /* Space between each parameter */
-}
-
-.output-container {
-    background: linear-gradient(to right, #f9f9f9, #f9f9f9);
-    padding: 10px; /* Padding around the container */
-    border-radius: 20px; /* Rounded corners for the container */
-    border: 2px solid #093c71ff;
-    line-height: 1.5; /* Adjust line height */
-}
-
-.reference-container {
-    background: linear-gradient(to right, #f9f9f9, #f9f9f9);
-    padding: 10px; /* Padding around the container */
-    border-radius: 20px; /* Rounded corners for the container */
-    border: 2px solid #093c71ff;
-    line-height: 0.2; /* Adjust line height */
-}
-    .parameter-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.equation-container {
-    padding: 5px;
-    border-radius: 20px;
-    line-height: 1.0;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-}
-
-.parameter-label {
-    width: 180px; /* Adjust the width as needed */
-    text-align: right; /* Align the label text to the right */
-    margin-right: 10px; /* Add some space between the label and input */
-}
-
-.parameter-input {
-    width: 100px; /* Ensure input fields fill available space */
-}
-    .styled-button {
-            background-color: #093c71ff; /* Reddish background color */
-            color: #fff; /* White text color */
-            padding: 5px 10px; /* Padding */
-            border-radius: 16px; /* Rounded corners */
-            cursor: pointer; /* Cursor style */
-            font-size: 16px; /* Font size */
-            transition: background-color 0.5s ease; /* Transition for hover effect */
-            display: block; /* Make button a block element */
-            margin: 0 auto; /* Center horizontally */
-            width: fit-content; /* Make the label width fit its content */
-            border: 2px solid #e40a2cff; /* Border size and color */
-            
+        .section-label {
+            text-align: center;
+            background-color: #e40a2cff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 10px auto;
+            width: fit-content;
+            border: 2px solid #093c71ff;
         }
-        
-
-        /* Hover effect */
+        .container {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .parameter-container {
+            margin-bottom: 10px;
+        }
+        .parameter-label {
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        .parameter-input {
+            width: calc(100% - 170px);
+        }
+        .output-parameter {
+            margin-bottom: 5px;
+        }
+        .styled-button {
+            background-color: #093c71ff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.5s ease;
+            display: block;
+            margin: 0 auto;
+            width: fit-content;
+            border: 2px solid #e40a2cff;
+        }
         .styled-button:hover {
-            background-color: #e40a2cff; /* Darker blue on hover */
+            background-color: #e40a2cff;
         }
-        
-        /* Media query for mobile devices */
+        .equation-container {
+            padding: 5px;
+            border-radius: 20px;
+            line-height: 1.5;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+        .reference-container {
+            margin-top: 20px;
+        }
+        .reference-container p {
+            font-size: 12px;
+        }
         @media screen and (max-width: 768px) {
-        .output-column {
-        flex: 0 0 100%; /* Display columns in full width on smaller screens */
-    }
-}
-        
-</style>
+            .parameter-label {
+                width: 120px;
+            }
+            .parameter-input {
+                width: calc(100% - 140px);
+            }
+        }
+    </style>
+</head>
 <body>
-<p><strong><img src="image.png" alt="" class="center" /></strong></p>
-<h2 style="font-weight: 400; text-align: center;"><strong>Non-invasive Echocardiographic Hemodynamic Calculator</strong></h2>
-<table style="border-collapse: collapse; width: auto; margin-bottom: 20px;" border="0">
-<tbody>
-<tr>
-<td style="width: 40.0%; vertical-align: top;">
-<div class="section-label">Variables</div>
-<div id="content-container">
-    <div id="input-column">
-<div class="clearfix">
-    <div class="parameter-container">
+    <p><strong><img src="image.png" alt="" class="center" width="600" height="300" /></strong></p>
+    <h2 style="font-weight: 400; text-align: center;">Non-invasive Echocardiographic Hemodynamic Calculator</h2>
+    
+    <div class="container">
+        <div class="section-label">Variables</div>
+        <div class="parameter-container">
         <label for="Height" class="parameter-label">Height (cm):</label>
         <input type="number" id="Height" min="0" max="300" value="174" class="parameter-input" style="width: 100px;">
     </div>
-    <div class="parameter-container">
+        <div class="parameter-container">
         <label for="Weight" class="parameter-label">Weight (kg):</label>
         <input type="number" id="Weight" min="0" max="400" value="65" class="parameter-input" style="width: 100px;">
     </div>
@@ -189,17 +145,13 @@ body {
         <label for="IVCC" class="parameter-label">IVC collapsibility (0 if >50%, 1 if <50%):</label>
         <input type="number" id="IVCC" min="0" max="1" value="0" class="parameter-input" style="width: 100px;">
     </div>
-</div>
-<div id="warning-message" style="color: red;">
-    <p>Ensure accurate entry of values (appropriate units) for each variable </p>
-</div>
-<button class="styled-button" onclick="calculate()">Calculate</button>
-</div>
-</td>
-<td style="width: 3.0%; vertical-align: top;">
-</td>
-<td style="width: 20.0%; height: 200px;">
-    <div class="output-container">
+        <!-- Repeat similar parameter-container for other variables -->
+        <button class="styled-button" onclick="calculate()">Calculate</button>
+    </div>
+    
+    <div class="container">
+        <div class="section-label">Output</div>
+        <div class="output-container">
         <p style="text-align: center;"><strong>Output:</strong></p>
         <div class="output-parameter" id="RAP">RAP</div>
         <div class="output-parameter" id="SV">SV</div>
@@ -212,10 +164,10 @@ body {
         <div class="output-parameter" id="PCWP">PCWP</div>
         <div class="output-parameter" id="PVR">PVR</div>
     </div>
-</td>
-
-<td style="width: 36.0%; height: 200px; vertical-align: top;">
-<div class="reference-container">
+    </div>
+    <div class="Reference values">
+    <div class="section-label">Reference values</div>
+    <div class="reference-container">
         <p style="text-align: center;"><strong>Reference values:</strong></p>
         <p style="text-align: center;"> RAP &le; 5 mmHg (3)</p>
         <p style="text-align: center;">SV = 60-100 mL (4)</p>
@@ -227,59 +179,54 @@ body {
         <p style="text-align: center;">mPAP = 8-20 mmHg (4)</p>
         <p style="text-align: center;">PCWP &le; 15 mmHg (4)</p>
         <p style="text-align: center;">PVR &le; 2 WU (4)</p>
-</td>
-</tr>
-</tbody>
-</div>
-</table>
-
-<table style="border-collapse: collapse; width: 100%;" border="0">
-<tbody>
-<tr>
-<td style="width: 54.0%; vertical-align: top;">
-<div class="section-label">Equations</div>
-<div class="equation-container">
-<p style="text-align: left;">BSA (Du Bois formula) = 0.007184 &times; Weight<sup>0.425</sup> &times; Height<sup>0.725</sup></p>
-<p style="text-align: left;"> SV = 0.785 &times; LVOTd<sup>2</sup> &times; LVOT-VTI<sup>(1)</sup></p>
-<p style="text-align: left;">SVi = SV/BSA</p>
-<p style="text-align: left;">CO = SV &times; HR (1)</p>
-<p style="text-align: left;">CI = CO/BSA</p>
-<p style="text-align: left;">RVFAC = ((RV EDA - RV ESA) / RV EDA) * 100</p>
-<p style="text-align: celeftnter;">PCWP = (43 - 0.1 &times; TRV - 0.5 &times; LVEF + 1.0 &times; RVFAC + 0.3 &times; LAVi + 0.7 &times; E/e&rsquo; + 0.9 &times; IVCd) &times; mPAP &divide; 100 <sup>(2)</sup></p>
-<p style="text-align: left;"> Simplified equations (PCWP) <sup>(2)</sup> = (52 - 0.5 &times; LVEF - 0.1 &times; TRV + 0.8 &times; E/e' + 1.0 &times; RVFAC + 1.1 &times; IVCd) &times; mPAP &divide; 100</p>
-<p style="text-align: left;">(83 - 0.6 &times; LVEF - 0.1 &times; TRV + 0.9 &times; E/e' + 0.75 &times; RVFAC) &times; mPAP &divide; 100</p>
-<p style="text-align: left;"> (120 - 0.5 &times; LVEF - 0.2 &times; TRV + 0.9 &times; E/e&rsquo;) &times; mPAP &divide; 100</p>
-<p style="text-align: left;"> (94 - 0.8 &times; LVEF) &times; mPAP &divide; 100</p>
-<p style="text-align: left;">sPAP = 4 &times; TRV<sup>2</sup> + RAP <sup>(3)</sup></p>
-<p style="text-align: left;">dPAP = 4 &times; PR-EDV<sup>2</sup> + RAP <sup>(3)</sup></p>
-<p style="text-align: left;">mPAP = (sPAP+2&times;dPAP)&divide;3 <sup>(3)</sup></p>
-<p style="text-align: left;">PVR = (mPAP - PCWP) &divide; CO <sup>(2)</sup></p>
-<p style="text-align: left;">RAP = 5 mmHg if IVCd &le;21 mm and IVC collapsibility &gt;50%
+            </div>
+    </div>
+    
+    <div class="container">
+        <div class="section-label">Equations</div>
+        <div class="equation-container">
+           <p style="text-align: center;">BSA (Du Bois formula) = 0.007184 &times; Weight<sup>0.425</sup> &times; Height<sup>0.725</sup></p>
+<p style="text-align: center;"> SV = 0.785 &times; LVOTd<sup>2</sup> &times; LVOT-VTI<sup>(1)</sup></p>
+<p style="text-align: center;">SVi = SV/BSA</p>
+<p style="text-align: center;">CO = SV &times; HR (1)</p>
+<p style="text-align: center;">CI = CO/BSA</p>
+<p style="text-align: center;">RVFAC = ((RV EDA - RV ESA) / RV EDA) * 100</p>
+<p style="text-align: cecenternter;">PCWP = (43 - 0.1 &times; TRV - 0.5 &times; LVEF + 1.0 &times; RVFAC + 0.3 &times; LAVi + 0.7 &times; E/e&rsquo; + 0.9 &times; IVCd) &times; mPAP &divide; 100 <sup>(2)</sup></p>
+<p style="text-align: center;"> Simplified equations (PCWP) <sup>(2)</sup> = (52 - 0.5 &times; LVEF - 0.1 &times; TRV + 0.8 &times; E/e' + 1.0 &times; RVFAC + 1.1 &times; IVCd) &times; mPAP &divide; 100</p>
+<p style="text-align: center;">(83 - 0.6 &times; LVEF - 0.1 &times; TRV + 0.9 &times; E/e' + 0.75 &times; RVFAC) &times; mPAP &divide; 100</p>
+<p style="text-align: center;"> (120 - 0.5 &times; LVEF - 0.2 &times; TRV + 0.9 &times; E/e&rsquo;) &times; mPAP &divide; 100</p>
+<p style="text-align: center;"> (94 - 0.8 &times; LVEF) &times; mPAP &divide; 100</p>
+<p style="text-align: center;">sPAP = 4 &times; TRV<sup>2</sup> + RAP <sup>(3)</sup></p>
+<p style="text-align: center;">dPAP = 4 &times; PR-EDV<sup>2</sup> + RAP <sup>(3)</sup></p>
+<p style="text-align: center;">mPAP = (sPAP+2&times;dPAP)&divide;3 <sup>(3)</sup></p>
+<p style="text-align: center;">PVR = (mPAP - PCWP) &divide; CO <sup>(2)</sup></p>
+<p style="text-align: center;">RAP = 5 mmHg if IVCd &le;21 mm and IVC collapsibility &gt;50%
     <br>
-    <p style="text-align: left;"> 8 mmHg if IVCd &le;21 mm and IVC collapsibility &lt;50%, 
+    <p style="text-align: center;"> 8 mmHg if IVCd &le;21 mm and IVC collapsibility &lt;50%, 
     <br>
-    <p style="text-align: left;"> or if IVCd &gt;21 mm and IVC collapsibility &gt;50% 
+    <p style="text-align: center;"> or if IVCd &gt;21 mm and IVC collapsibility &gt;50% 
     <br>
-    <p style="text-align: left;"> 15 mmHg if IVCd &gt;21 mm and IVC collapsibility &lt;50% (3)</p>
-</td>
-
-<td style="width: 6.0%; height: 400px; vertical-align: top;">
-</td>
-<td style="width: 59.0%; height: 400px; vertical-align: top;">
-<div class="section-label">References</div>
-<div style="text-align: left; font-size: 12px;">
+    <p style="text-align: center;"> 15 mmHg if IVCd &gt;21 mm and IVC collapsibility &lt;50% (3)</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="section-label">References</div>
+        <div class="reference-container">
+            <div style="text-align: center; font-size: 12px;">
     <p>(1) doi: <a href="https://doi.org/10.1161/01.cir.70.3.425">https://doi.org/10.1161/01.cir.70.3.425</a>. PMID: 6744546.</p>
     <p>(2) doi: <a href="https://doi.org/10.1002/ehf2.13183">https://doi.org/10.1002/ehf2.13183</a>. PMID: 33566429; PMCID: PMC8006655.</p>
     <p>(3) doi: <a href="https://doi.org/10.1016/j.echo.2010.05.010">https://doi.org/10.1016/j.echo.2010.05.010</a>. PMID: 20620859.</p>
     <p>(4) doi: <a href="https://doi.org/10.1093/eurheartj/ehac237">https://doi.org/10.1093/eurheartj/ehac237</a>. PMID: 36017548.</p>
 </div>
-<div class="section-label">Abbreviations</div>
-<p style="text-align: left; font-size: 12px;"> CI: cardiac index; CO: cardiac output; dPAP: diastolic pulmonary artery pressure; HR heart rate; IVCd: inferior vena cava diameter; LAVi: left atrial volume index; LVEF: left ventricular ejection fraction; LVOT: left ventricular outflow tract; mPAP: mean pulmonary artery pressure; RAP: right atrial pressure; RV EDA: right ventricular end-diastolic area, RV ESA: right ventricular end sistolic area, RV FAC: right ventricle fractional area change; PCWP: pulmonary capillary wedge pressure; PR-EDV: pulmonary regurgitation end diastolic velocity; sPAP: systolic pulmonary artery pressure; SV: stroke volume; SVi: stroke volume index; TRV: tricuspid regurgitation velocity; VTI: velocity time integral.</p>
-</td>
-</tr>
-</tbody>
+        </div>
+    </div>
 
-<script>
+<div class="section-label">Abbreviations</div>
+<p style="text-align: center; font-size: 12px;"> CI: cardiac index; CO: cardiac output; dPAP: diastolic pulmonary artery pressure; HR heart rate; IVCd: inferior vena cava diameter; LAVi: left atrial volume index; LVEF: left ventricular ejection fraction; LVOT: left ventricular outflow tract; mPAP: mean pulmonary artery pressure; RAP: right atrial pressure; RV EDA: right ventricular end-diastolic area, RV ESA: right ventricular end sistolic area, RV FAC: right ventricle fractional area change; PCWP: pulmonary capillary wedge pressure; PR-EDV: pulmonary regurgitation end diastolic velocity; sPAP: systolic pulmonary artery pressure; SV: stroke volume; SVi: stroke volume index; TRV: tricuspid regurgitation velocity; VTI: velocity time integral.</p>
+    </div>
+
+    <script>
     function calculate() {
     var Height = parseFloat(document.getElementById('Height').value);
     var TRV = parseFloat(document.getElementById('TRV').value);
