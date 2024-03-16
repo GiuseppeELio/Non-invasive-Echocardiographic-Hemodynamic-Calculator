@@ -30,15 +30,17 @@
             margin-bottom: 20px;
         }
         .parameter-container {
+            text-align: center;
             margin-bottom: 10px;
         }
         .parameter-label {
             width: 150px;
-            text-align: right;
+            text-align: left;
             margin-right: 10px;
             display: inline-block;
         }
         .parameter-input {
+            text-align: center;
             width: calc(100% - 170px);
         }
         .output-parameter {
@@ -73,7 +75,7 @@
         .reference-container p {
             font-size: 12px;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 840px) {
             .parameter-label {
             width: 150px;
             text-align: right;
@@ -90,13 +92,15 @@
     <p><strong><img src="image.png" alt="" class="center" width="600" height="300" /></strong></p>
     <h2 style="font-weight: 400; text-align: center;">Non-invasive Echocardiographic Hemodynamic Calculator</h2>
     
-    <div class="container">
-        <div class="section-label">Variables</div>
-        <div class="parameter-container">
+    <div class="section-label">Variables</div>
+<div id="content-container">
+    <div id="input-column">
+<div class="clearfix">
+    <div class="parameter-container">
         <label for="Height" class="parameter-label">Height (cm):</label>
         <input type="number" id="Height" min="0" max="300" value=" " class="parameter-input" style="width: 100px;">
     </div>
-        <div class="parameter-container">
+    <div class="parameter-container">
         <label for="Weight" class="parameter-label">Weight (kg):</label>
         <input type="number" id="Weight" min="0" max="400" value=" " class="parameter-input" style="width: 100px;">
     </div>
@@ -146,11 +150,15 @@
     </div>
     <div class="parameter-container">
         <label for="IVCC" class="parameter-label">IVC collapsibility (0 if >50%, 1 if <50%):</label>
-        <input type="number" id="IVCC" min="0" max="1" value="0" class="parameter-input" style="width: 100px;">
+        <input type="number" id="IVCC" min="0" max="1" value=" " class="parameter-input" style="width: 100px;">
     </div>
-        <!-- Repeat similar parameter-container for other variables -->
-        <button class="styled-button" onclick="calculate()">Calculate</button>
-    </div>
+</div>
+<div id="warning-message" style="color: red; text-align: center;">
+    <p>Ensure accurate entry of values (appropriate units) for each variable </p>
+</div>
+<button class="styled-button" onclick="calculate()">Calculate</button>
+</div>
+
     
     <div class="container">
         <div class="section-label">Output</div>
