@@ -305,14 +305,7 @@
     if (IVC === 0) {
         // Set all related parameters to zero or empty
         document.getElementById('RAP').innerText = 'RAP: N/A';
-        document.getElementById('PAPs').innerText = 'sPAP: N/A';
-        document.getElementById('PAPd').innerText = 'dPAP: N/A';
-        document.getElementById('PAPm').innerText = 'mPAP: N/A';
-
         document.getElementById('RAP').style.color = 'black';
-        document.getElementById('PAPs').style.color = 'black';
-        document.getElementById('PAPd').style.color = 'black';
-        document.getElementById('PAPm').style.color = 'black';
         
     } else {
 
@@ -336,7 +329,13 @@
     } else {
         document.getElementById('RAP').style.color = 'red'; // Set color to red
     }
+    }
+    
+     if (TRV === 0) {
                      
+                     document.getElementById('PAPs').innerText = 'sPAP: N/A';
+                      document.getElementById('PAPs').style.color = 'black';
+    } else {
     // Calculate PAPs (Pulmonary artery pressure systolic)
     var PAPs = (4 * Math.pow(TRV/100, 2) + RAP).toFixed(1);
     document.getElementById('PAPs').innerText = 'sPAP: ' + PAPs + ' mmHg';
@@ -345,7 +344,13 @@
     } else {
         document.getElementById('PAPs').style.color = 'red'; // Set color to red
     }
+    }
     
+     if (PREDV === 0) {
+                     
+                     document.getElementById('PAPd').innerText = 'dPAP: N/A';
+                      document.getElementById('PAPd').style.color = 'black';
+    } else {
     // Calculate PAPd (Pulmonary artery pressure diastolic)
     var PAPd = (4 * Math.pow(PREDV/100, 2)+ RAP).toFixed(1);
     document.getElementById('PAPd').innerText = 'dPAP: ' + PAPd + ' mmHg';
@@ -354,7 +359,13 @@
     } else {
         document.getElementById('PAPd').style.color = 'red'; // Set color to red
     }
+    }
 
+ if (PAPs === 0 && PAPd === 0) {
+     
+                         document.getElementById('PAPm').innerText = 'mPAP: N/A';
+                      document.getElementById('PAPm').style.color = 'black';
+} else {
     // Calculate PAPm (Pulmonary artery pressure mean)
     var PAPm = ((parseFloat(PAPs) + 2 * parseFloat(PAPd)) / 3).toFixed(1);
     document.getElementById('PAPm').innerText = 'mPAP: ' + PAPm + ' mmHg';
@@ -411,6 +422,7 @@
     }
 }
 </script>
+
 
 </body>
 </html>
