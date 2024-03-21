@@ -258,13 +258,18 @@
         alert("Please enter valid numeric values for all input fields.");
         return;
     }
-
-    // Caulculate the RFAC parameter (%)
-    var RVFAC = ((RVEDA - RVESA) / RVEDA) * 100; // Calculate RV FAC as a percentage
         
     // Calculate body surface area (SBA)
     var SBA = 0.007184 * Math.pow(Weight, 0.425) * Math.pow(Height, 0.725);
-
+    
+  
+    if (LVOT_VTI === 0 || LVOTd === 0) {
+    // Set SV, SVI, CO, and PVR to NaN
+    document.getElementById('SV').innerText = 'SV: N/A';
+    document.getElementById('SVI').innerText = 'SVI: N/A';
+    document.getElementById('CO').innerText = 'CO: N/A';
+    document.getElementById('CI').innerText = 'CI: N/A';
+} else {
     // Calculate stroke volume (SV)
     var SV = (LVOT_VTI * Math.PI * Math.pow(LVOTd / 2, 2)).toFixed(1);
     document.getElementById('SV').innerText = 'SV: ' + SV + ' mL';
@@ -273,7 +278,7 @@
     } else {
         document.getElementById('SV').style.color = 'red'; // Set color to red
     }
-     
+
     // Calculate stroke volume index (SVI)
     var SVI = (SV / SBA).toFixed(1);
     document.getElementById('SVI').innerHTML = 'SVI: ' + SVI + ' mL/m<sup>2</sup>';
@@ -282,7 +287,7 @@
     } else {
         document.getElementById('SVI').style.color = 'red'; // Set color to red
     }
-        
+
     // Calculate cardiac output (CO)
     var CO = ((SV * HR) / 1000).toFixed(1);
     document.getElementById('CO').innerText = 'CO: ' + CO + ' L/min';
@@ -291,8 +296,8 @@
     } else {
         document.getElementById('CO').style.color = 'red'; // Set color to red
     }
-
-    // Calculate CI 
+    
+// Calculate CI 
     var CI = (CO / SBA).toFixed(1);
     document.getElementById('CI').innerHTML = 'CI: ' + CI + ' L/min/m<sup>2</sup>';
     if (CI > 2.2) {
@@ -300,6 +305,7 @@
     } else {
         document.getElementById('CI').style.color = 'red'; // Set color to red
     }
+}
 
     // Check if IVC is equal to zero
     if (IVC === 0) {
@@ -349,7 +355,7 @@
      if (PREDV === 0) {
                      
                      document.getElementById('PAPd').innerText = 'dPAP: N/A';
-                      document.getElementById('PAPd').style.color = 'black';
+                     document.getElementById('PAPd').style.color = 'black';
     } else {
     // Calculate PAPd (Pulmonary artery pressure diastolic)
     var PAPd = (4 * Math.pow(PREDV/100, 2)+ RAP).toFixed(1);
@@ -361,13 +367,18 @@
     }
     }
 
- if (PAPs === 0 && PAPd === 0) {
-     
-                         document.getElementById('PAPm').innerText = 'mPAP: N/A';
-                      document.getElementById('PAPm').style.color = 'black';
+// Calculate PAPm (Pulmonary artery pressure mean)
+var PAPm;
+if (PAPs === 0 && PAPd === 0) {
+    PAPm = 'N/A';
 } else {
-    // Calculate PAPm (Pulmonary artery pressure mean)
-    var PAPm = ((parseFloat(PAPs) + 2 * parseFloat(PAPd)) / 3).toFixed(1);
+    PAPm = ((parseFloat(PAPs) + 2 * parseFloat(PAPd)) / 3).toFixed(1);
+}
+
+if (isNaN(parseFloat(PAPm))) {
+    document.getElementById('PAPm').innerText = 'mPAP: ' + PAPm;
+    document.getElementById('PAPm').style.color = 'black'; // Set color to black
+} else {
     document.getElementById('PAPm').innerText = 'mPAP: ' + PAPm + ' mmHg';
     if (PAPm >= 8 && PAPm <= 20) {
         document.getElementById('PAPm').style.color = 'green'; // Set color to green
@@ -376,53 +387,81 @@
     }
 }
 
-    // Calculate PCWP (Pulmonary capillary wedge pressure)
-    var PCWP;
+  var PCWP;
+
+// Check if RVEDA and RVESA are not zero before calculating RVFAC
+if (RVEDA !== 0 && RVESA !== 0) {
+    // Calculate the RVFAC parameter (%)
+    var RVFAC = ((RVEDA - RVESA) / RVEDA) * 100; // Calculate RV FAC as a percentage
 
     // Determine the scenario for calculating PCWP based on input variables
     switch (true) {
         case (EF !== 0 && TRV !== 0 && E_over_e !== 0 && RVFAC !== 0 && IVC !== 0 && LAVi !== 0):
-            PCWP = ((43 - 0.1 * TRV - 0.5 * EF + 1.0 * RVFAC + 0.3 * LAVi + 0.7 * E_over_e + 0.9 * IVC) * (PAPm / 100)).toFixed(1);
+            PCWP = ((43 - 0.1 * TRV - 0.5 * EF + 1.0 * RVFAC + 0.3 * LAVi + 0.7 * E_over_e + 0.9 * IVC) * PAPm / 100).toFixed(1);
             break;
         case (EF !== 0 && TRV !== 0 && E_over_e !== 0 && RVFAC !== 0 && IVC !== 0):
-            PCWP = ((52 - 0.5 * EF - 0.1 * TRV + 0.8 * E_over_e + 1.0 * RVFAC + 1.1 * IVC) * (PAPm / 100)).toFixed(1);
+            PCWP = ((52 - 0.5 * EF - 0.1 * TRV + 0.8 * E_over_e + 1.0 * RVFAC + 1.1 * IVC) * PAPm / 100).toFixed(1);
             break;
         case (EF !== 0 && TRV !== 0 && E_over_e !== 0 && RVFAC !== 0):
-            PCWP = ((83 - 0.6 * EF - 0.1 * TRV + 0.9 * E_over_e + 0.75 * RVFAC) * (PAPm / 100)).toFixed(1);
-            break;
-        case (EF !== 0 && TRV !== 0 && E_over_e !== 0):
-            PCWP = ((120 - 0.5 * EF - 0.2 * TRV + 0.9 * E_over_e) * (PAPm / 100)).toFixed(3);
-            break;
-        case (EF !== 0 && TRV !== 0):
-            PCWP = ((133 - 0.6 * EF - 0.2 * TRV) * (PAPm / 100)).toFixed(1);
-            break;
-        case (EF !== 0):
-            PCWP = ((94 - 0.8 * EF) * (PAPm / 100)).toFixed(1);
+            PCWP = ((83 - 0.6 * EF - 0.1 * TRV + 0.9 * E_over_e + 0.75 * RVFAC) * PAPm / 100).toFixed(1);
             break;
         default:
             PCWP = "Unable to calculate PCWP";
             break;
     }
-
+} else {
+    switch (true) {
+        case (EF !== 0 && TRV !== 0 && E_over_e !== 0):
+            PCWP = ((120 - 0.5 * EF - 0.2 * TRV + 0.9 * E_over_e) * PAPm / 100).toFixed(1);
+            break;
+        case (EF !== 0 && TRV !== 0):
+            PCWP = ((133 - 0.6 * EF - 0.2 * TRV) * PAPm / 100).toFixed(1);
+            break;
+        case (EF !== 0):
+            PCWP = ((94 - 0.8 * EF) * PAPm / 100).toFixed(1);
+            break;
+        default:
+            PCWP = "Unable to calculate PCWP";
+            break;
+    }
+}
+    
     // Display PCWP result
+if (isNaN(PCWP)) {
+    document.getElementById('PCWP').innerText = 'PCWP: N/A';
+    document.getElementById('PAPm').style.color = 'black';
+} else {
     document.getElementById('PCWP').innerText = 'PCWP: ' + PCWP + ' mmHg';
     if (PCWP <= 15) {
         document.getElementById('PCWP').style.color = 'green'; // Set color to green
     } else {
         document.getElementById('PCWP').style.color = 'red'; // Set color to red
     }
+}
+
 
     // Calculate PVR (Pulmonary vascular resistance)
-    var PVR = ((PAPm - PCWP) / CO).toFixed(3);
-    document.getElementById('PVR').innerText = 'PVR: ' + PVR + ' WU';
-    if (PVR <= 2) {
-        document.getElementById('PVR').style.color = 'green'; // Set color to green
-    } else {
-        document.getElementById('PVR').style.color = 'red'; // Set color to red
-    }
+var PVR;
+if (isNaN(PAPm) || isNaN(PCWP) || isNaN(CO)) {
+    PVR = 'N/A';
+} else {
+    PVR = ((PAPm - PCWP) / CO).toFixed(3);
 }
-</script>
 
+    if (PVR === 'N/A') {
+    document.getElementById('PVR').innerText = 'PVR: ' + PVR;
+    document.getElementById('PVR').style.color = 'black'; // Set color to black
+    } else {
+    document.getElementById('PVR').innerText = 'PVR: ' + PVR + ' WU';
+        if (PVR <= 2) {
+        document.getElementById('PVR').style.color = 'green'; // Set color to green
+        } else {
+        document.getElementById('PVR').style.color = 'red'; // Set color to red
+            }
+        }
+        
+    }
+</script>
 
 </body>
 </html>
